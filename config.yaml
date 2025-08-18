@@ -1,0 +1,50 @@
+# Configuration for TNBC Immunotherapy Prediction Framework
+
+data:
+  paths:
+    genomics: data/genomics.csv
+    transcriptomics: data/transcriptomics.csv
+    epigenomics: data/epigenomics.csv
+    proteomics: data/proteomics.csv
+    single_cell: data/single_cell.pkl
+    spatial: data/spatial.pkl
+    clinical: data/clinical.csv
+    labels: data/labels.csv  # binary response (0/1)
+  dummy: true  # set to false for real data
+  graph: graphs/feature_graph.npy  # STRING-based graph
+
+preprocessing:
+  imputation: knn  # or 'mice'
+  knn_k: 5
+  variance_threshold: 0.01
+  fdr_threshold: 0.05
+  elastic_net_alpha: 0.5
+  elastic_net_l1_ratio: 0.5
+
+model:
+  gcn_layers: [128, 64, 32]
+  dropout: 0.5
+  l2_reg: 0.001
+  attention: true
+  seed: 42
+
+training:
+  epochs: 100
+  batch_size: 32
+  lr: 0.001
+  early_stop_patience: 10
+  nested_cv_folds: 5  # outer and inner
+
+evaluation:
+  metrics: [auc, auprc, f1]
+  bootstrap_n: 1000
+
+explainability:
+  shap_samples: 100
+  pathway_db: reactome  # or kegg
+  fdr_method: benjamini_hochberg
+
+output:
+  model_path: results/model.pt
+  logs: results/logs.txt
+  explanations: results/explanations.pkl

@@ -1,0 +1,19 @@
+├── data/
+│   ├── make_dummy_data.py
+│   └── README.md
+├── graphs/
+│   └── .gitkeep
+├── models/
+│   └── gcn_model.py
+├── scripts/
+│   ├── train.py
+│   ├── evaluate.py
+│   └── explain.py
+├── utils/
+│   ├── metrics.py
+│   └── graph_utils.py
+├── results/
+│   └── .gitkeep
+├── config.yaml
+├── requirements.txt
+└── README.md
